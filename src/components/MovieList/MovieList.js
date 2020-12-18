@@ -9,7 +9,6 @@ const styles = (theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    background: 'red',
   },
   smMargin: {
     margin: theme.spacing(1),
@@ -20,11 +19,6 @@ class MovieList extends Component {
   componentDidMount() {
     this.props.dispatch({ type: 'FETCH_MOVIES' });
   }
-
-  getDetails = (movie) => {
-    this.props.dispatch({ type: 'GET_DETAILS', payload: movie });
-    this.props.history.push('/details/' + movie.id);
-  };
 
   render() {
     const classes = this.props;
