@@ -8,12 +8,9 @@ const styles = (theme) => ({
     display: 'flex',
     maxWidth: 400,
     height: '100%',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
+    margin: theme.spacing(5),
     flexDirection: 'column',
-  },
-
-  buttons: {
-    justifyContent: 'space-between',
   },
 });
 
@@ -34,7 +31,7 @@ class Details extends Component {
           alt={this.props.reduxState.details.title}
         />
         <CardContent>
-          <Typography variant='p'>
+          <Typography variant='body1'>
             {this.props.reduxState.details.description}
           </Typography>
         </CardContent>

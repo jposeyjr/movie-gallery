@@ -22,7 +22,10 @@ CREATE TABLE "movie_genre" (
 "genres_id" INT REFERENCES "genres"
 );
 
-
+SELECT title, poster, description, name  FROM movie_genre 
+JOIN movies ON movies.id = movie_genre.movies_id 
+JOIN genres ON movie_genre.genres_id = genres.id
+WHERE movies.id = 2
 --------[ DATA! ]---------
 
 -- starter movies
