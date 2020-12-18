@@ -29,16 +29,10 @@ const styles = (theme) => ({
 class MovieItem extends Component {
   state = {
     fav: false,
-    details: false,
   };
 
   addFavorite = (index) => {
     this.setState({ fav: !this.state.fav });
-  };
-
-  getDetails = (id) => {
-    //this.props.dispatch({ type: 'GET_DETAILS', payload: movie });
-    this.setState({ details: !this.state.details });
   };
 
   render() {
@@ -53,13 +47,13 @@ class MovieItem extends Component {
           className={classes.media}
           image={this.props.movie.poster}
           alt={this.props.movie.title}
-          onClick={() => this.getDetails(this.props.movie)}
+          onClick={() => this.props.getDetails(this.props.movie)}
         />
         <CardActions className={classes.buttons}>
           <IconButton
             aria-label={`add ${this.props.movie.title} to favorites`}
             variant='contained'
-            onClick={() => this.addFavorite(this.props.index)}
+            onClick={() => this.addFavorite(this.props.movie.id)}
           >
             {this.state.fav ? (
               <StarIcon style={{ color: 'red' }} />
@@ -70,13 +64,9 @@ class MovieItem extends Component {
           <IconButton
             aria-label={`Get about ${this.props.movie.title} movie`}
             variant='contained'
-            onClick={() => this.getDetails(this.props.index)}
+            onClick={() => this.props.getDetails(this.props.movie.id)}
           >
-            {this.state.details ? (
-              <InfoIcon style={{ color: 'white' }} />
-            ) : (
-              <InfoIcon style={{ color: 'red' }} />
-            )}
+            <InfoIcon style={{ color: 'red' }} />
           </IconButton>
         </CardActions>
       </Card>

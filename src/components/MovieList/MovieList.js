@@ -20,6 +20,11 @@ class MovieList extends Component {
     this.props.dispatch({ type: 'FETCH_MOVIES' });
   }
 
+  getDetails = (id) => {
+    this.props.dispatch({ type: 'GET_DETAILS', payload: id });
+    this.props.history.push('/details/');
+  };
+
   render() {
     const classes = this.props;
 
@@ -30,13 +35,9 @@ class MovieList extends Component {
         alignItems='stretch'
         spacing={2}
       >
-        {this.props.reduxState.movies.map((movie, index) => (
+        {this.props.reduxState.movies.map((movie) => (
           <Grid key={movie.id} item xs={12} sm={6} md={4} lg={3}>
-            <MovieItem
-              movie={movie}
-              getDetails={this.getDetails}
-              index={index}
-            />
+            <MovieItem movie={movie} getDetails={this.getDetails} />
           </Grid>
         ))}
       </Grid>
