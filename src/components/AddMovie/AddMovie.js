@@ -50,7 +50,7 @@ class AddMovie extends Component {
   }
 
   handleSubmit = (e) => {
-    console.log(e);
+    //add stuff
   };
 
   handleCancel = (e) => {
