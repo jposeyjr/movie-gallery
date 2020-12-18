@@ -1,28 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
-import {
-  GridList,
-  GridListTile,
-  GridListTileBar,
-  IconButton,
-} from '@material-ui/core';
-import StarBorderIcon from '@material-ui/icons/StarBorder';
-import StarIcon from '@material-ui/icons/Star';
+import { Grid } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
+import MovieItem from '../MovieItem/MovieItem';
 
 const styles = (theme) => ({
-  root: {
+  mainContainer: {
     display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    overflow: 'hidden',
-    backgroundColor: theme.palette.background.paper,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    background: 'red',
   },
-  gridList: {
-    width: '200',
-    height: '200',
-    justifyContent: 'space-around',
+  smMargin: {
+    margin: theme.spacing(1),
   },
 });
 
@@ -36,46 +26,26 @@ class MovieList extends Component {
     this.props.history.push('/details/' + movie.id);
   };
 
-  addFavorite = (movie) => {
-    this.props.dispatch({ type: 'SET_FAVORITE', payload: movie });
-  };
-
   render() {
     const classes = this.props;
 
     return (
-      <div className={classes.root}>
-        <h1>Movie List </h1>
-        <GridList
-          cols={5}
-          spacing={25}
-          cellHeight={'auto'}
-          className={classes.gridList}
-        >
-          {this.props.reduxState.movies.map((movie, index) => (
-            <GridListTile key={movie.id} cols={movie.cols}>
-              <h2>{movie.title}</h2>
-              <img
-                src={movie.poster}
-                alt={movie.title}
-                onClick={() => this.getDetails(this.movie)}
-              />
-              <GridListTileBar
-                title={movie.title}
-                actionIcon={
-                  <IconButton
-                    aria-label={`add ${movie.title} to favorites`}
-                    variant='contained'
-                    onClick={() => this.addFavorite(index)}
-                  >
-                    <StarBorderIcon style={{ color: 'gold' }} />
-                  </IconButton>
-                }
-              />
-            </GridListTile>
-          ))}
-        </GridList>
-      </div>
+      <Grid
+        className={classes.container}
+        container
+        alignItems='stretch'
+        spacing={2}
+      >
+        {this.props.reduxState.movies.map((movie, index) => (
+          <Grid key={movie.id} item xs={12} sm={6} md={4} lg={3}>
+            <MovieItem
+              movie={movie}
+              getDetails={this.getDetails}
+              index={index}
+            />
+          </Grid>
+        ))}
+      </Grid>
     );
   }
 }
