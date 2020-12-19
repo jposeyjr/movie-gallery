@@ -17,6 +17,12 @@ function* rootSaga() {
   yield takeEvery('FETCH_MOVIES', getMovies);
   yield takeEvery('GET_DETAILS', getDetails);
   yield takeEvery('FETCH_GENERES', getGenres);
+  yield takeEvery('ADD_MOVIE', addMovie);
+}
+
+function* addMovie(action) {
+  yield axios.post('/api/movie', action.payload);
+  yield getMovies();
 }
 
 function* getGenres() {
@@ -32,7 +38,6 @@ function* getMovies() {
 function* getDetails(action) {
   const response = yield axios.get('/api/movie/' + action.payload);
   yield put({ type: 'SET_DETAILS', payload: response.data });
-  console.log(response.data);
 }
 
 // Create sagaMiddleware

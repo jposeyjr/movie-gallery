@@ -33,16 +33,16 @@ const styles = (theme) => ({
 
 const initState = {
   title: '',
-  image_url: '',
-  desc: '',
-  genres: '',
+  poster: '',
+  description: '',
+  genre_id: '',
 };
 class AddMovie extends Component {
   state = {
     title: '',
-    image_url: '',
-    desc: '',
-    genres: '',
+    poster: '',
+    description: '',
+    genre_id: '',
   };
 
   componentDidMount() {
@@ -50,15 +50,16 @@ class AddMovie extends Component {
   }
 
   handleSubmit = (e) => {
-    //add stuff
+    this.props.dispatch({ type: 'ADD_MOVIE', payload: this.state });
   };
 
   handleCancel = (e) => {
+    //https://bit.ly/34tsdr1
     this.setState(() => initState);
   };
 
   handleChange = (e) => {
-    this.setState({ genres: e.target.value });
+    this.setState({ genre_id: e.target.value });
   };
 
   render() {
@@ -84,22 +85,22 @@ class AddMovie extends Component {
             variant='outlined'
             helperText='link to image of your movie poster'
             label='Movie Image URL'
-            value={this.state.image_url}
-            onChange={(e) => this.setState({ image_url: e.target.value })}
+            value={this.state.poster}
+            onChange={(e) => this.setState({ poster: e.target.value })}
           />
           <TextField
             name='desc'
             variant='outlined'
             helperText='description of your movie'
             label='Description of movie'
-            value={this.state.desc}
-            onChange={(e) => this.setState({ desc: e.target.value })}
+            value={this.state.description}
+            onChange={(e) => this.setState({ description: e.target.value })}
           />
           <Select
             className={classes.select}
             labelId='genres-label'
             id='genres'
-            value={this.state.genres}
+            value={this.state.genre_id}
             onChange={this.handleChange}
             label='Genres'
           >
