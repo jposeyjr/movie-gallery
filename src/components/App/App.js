@@ -15,15 +15,16 @@ class App extends Component {
   };
   // Renders the entire app on the DOM
   render() {
+    const { value } = this.state;
     return (
       <div className='App'>
         <Router>
           <AppBar position='static'>
-            <Typography variant='h1' align='center'>
+            <Typography variant='h2' align='center'>
               Movie List!
             </Typography>
             <Tabs
-              value={this.state.value}
+              value={value}
               onChange={this.handleChange}
               aria-label='navigation bar with home tab'
               centered

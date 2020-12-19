@@ -51,11 +51,14 @@ class AddMovie extends Component {
 
   handleSubmit = (e) => {
     this.props.dispatch({ type: 'ADD_MOVIE', payload: this.state });
+    e.preventDefault();
+    this.props.history.push('/');
   };
 
   handleCancel = (e) => {
     //https://bit.ly/34tsdr1
     this.setState(() => initState);
+    this.props.history.push('/');
   };
 
   handleChange = (e) => {
